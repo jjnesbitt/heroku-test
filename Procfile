@@ -1,1 +1,1 @@
-web: echo $SOURCE_VERSION
+web: python test/serve.py
