@@ -4,7 +4,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 
 from test import __version__
 
-serverPort = os.getenv("PORT", "8080")
+serverPort = int(os.getenv("PORT", "8080"))
 
 
 class MyServer(BaseHTTPRequestHandler):
