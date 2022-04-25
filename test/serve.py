@@ -2,7 +2,7 @@
 import os
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
-from test import __version__
+from .version import __version__
 
 serverPort = int(os.getenv("PORT", "8080"))
 
@@ -12,9 +12,7 @@ class MyServer(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header("Content-type", "text/plain")
         self.end_headers()
-
-        print("---", __version__)
-        self.wfile.write(bytes(__version__))
+        self.wfile.write(bytes(__version__, encoding="utf-8"))
 
 
 if __name__ == "__main__":

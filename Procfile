@@ -1,1 +1,1 @@
-web: python test/serve.py
+web: python -m test.serve
