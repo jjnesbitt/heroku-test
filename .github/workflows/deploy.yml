@@ -18,7 +18,7 @@ jobs:
         run: python setup.py sdist --formats=gztar
 
       - name: Create Heroku Build
-        run: heroku builds create -a jacob-nesbitt-playground --source-tar=dist/$(python setup.py --fullname).tar.gz
+        run: heroku builds:create -a jacob-nesbitt-playground --source-tar=dist/$(python setup.py --fullname).tar.gz
 
       # - uses: akhileshns/heroku-deploy@v3.12.12
       #   with:
