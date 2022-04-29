@@ -19,6 +19,9 @@ jobs:
 
       - name: Create Heroku Build
         run: heroku builds:create -a jacob-nesbitt-playground --source-tar=dist/$(python setup.py --fullname).tar.gz
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY  }}
+          HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL  }}
 
       # - uses: akhileshns/heroku-deploy@v3.12.12
       #   with:
