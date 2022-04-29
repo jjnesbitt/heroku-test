@@ -19,15 +19,12 @@ jobs:
         run: heroku plugins:install heroku-builds
 
       - name: test
-        run: git tag --list
+        run: ls -alh
 
       - name: Build app into tarball
         run: |
           git fetch --prune --unshallow --tags
           python setup.py sdist --formats=gztar
-
-      - name: test2
-        run: git tag --list
 
       - name: Create Heroku Build
         run: heroku builds:create -a jacob-nesbitt-playground --source-tar=dist/$(python setup.py --fullname).tar.gz
