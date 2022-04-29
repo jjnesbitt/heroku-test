@@ -11,8 +11,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "jacob-nesbitt-playground"
-          heroku_email: ${{secrets.HEROKU_EMAIL}}
+      - name: Install Heroku CLI
+        run: curl https://cli-assets.heroku.com/install.sh | sh
+
+      - name: Build app into tarball
+        run: python setup.py sdist --formats=gztar
+
+      - name: Create Heroku Build
+        run: heroku builds create -a jacob-nesbitt-playground --source-tar=dist/$(python setup.py --fullname).tar.gz
+
+      # - uses: akhileshns/heroku-deploy@v3.12.12
+      #   with:
+      #     heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+      #     heroku_app_name: "jacob-nesbitt-playground"
+      #     heroku_email: ${{secrets.HEROKU_EMAIL}}
