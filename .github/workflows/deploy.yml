@@ -18,6 +18,9 @@ jobs:
       - name: Install Heroku CLI
         run: curl https://cli-assets.heroku.com/install.sh | sh
 
+      - name: Install builds plugin
+        run: heroku plugins:install heroku-builds
+
       - name: Build app into tarball
         run: python setup.py sdist --formats=gztar
 
